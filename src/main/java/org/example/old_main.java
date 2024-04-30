@@ -1,21 +1,17 @@
 package org.example;
 
 import java.sql.*;
-import java.util.Scanner;
+import io.javalin.Javalin;
 
-public class View {
-
-    public static int viewer(String WebParam) {
-        //Verbindung zur DB
+public class old_main {
+    public static void main(String[] args) {
+        // Verbindungsinformationen zur Datenbank
         String url = "jdbc:mysql://192.168.10.45:3306/bestellsystem";
         String user = "bestellsystem";
         String password = "";
 
-        Scanner scan = new Scanner(System.in);
-        String test = scan.nextLine(); //HIER MUSS ICH DANN IWIE DIE PARAMETER AUS DEM WEB FISCHEN;
-
-        //SQL Abfrage (die im Web oder hier generiert wird????)
-        String query = test;
+        // SQL-Abfrage, um die Anzahl der Zeilen in einer Tabelle zu erhalten
+        String query = "SELECT COUNT(*) AS zeilen FROM bestellung WHERE ID = 1";
 
         try {
             // Verbindung zur Datenbank herstellen
@@ -31,7 +27,6 @@ public class View {
             if (resultSet.next()) {
                 int rowCount = resultSet.getInt("zeilen");
                 System.out.println("Es sind " + rowCount + " Zeilen in der Datenbank die auf deine Suche passen");
-                return rowCount;
             }
 
             // Verbindung schließen
@@ -42,12 +37,6 @@ public class View {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            int fail = -1;
-            return fail;
-            //WIE GEH ICH MIT FEHLERN UM???? WAS WILL ICH MACHEN
-
-
         }
-        return 0;
     }
 }
