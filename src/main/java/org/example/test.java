@@ -1,7 +1,6 @@
 package org.example;
 
 import io.javalin.http.Context;
-import java.util.Arrays;
 
 public final class test {
 
