@@ -10,7 +10,7 @@ public class Main {
         app.get("/test", test::getAllProducts);
 
 
-        app.get("/test/:special", test::getSpecialProduct);
+        app.get("/test/{special}", test::getSpecialProduct);
 
     }
 }
