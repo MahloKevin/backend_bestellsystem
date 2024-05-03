@@ -2,9 +2,9 @@ package org.example;
 
 public class Operations {
 
-    public int countSymbols(String string, String symbol) {
+    public int countSymbols(String text, String symbol) {
         int count = 0;
-        char[] everything = string.toCharArray();
+        char[] everything = text.toCharArray();
 
         for (int i = 0; i <= everything.length - 1; i = i + 1) {
             if (String.valueOf(everything[i]).equals(symbol)) {
@@ -52,5 +52,18 @@ public class Operations {
 
     }
 
+    public String addQuotation(String text) {
+
+        try {
+            double number = Double.parseDouble(text);
+            return text;
+        } catch (NumberFormatException e) {
+
+            text = "\"" + text + "\"";
+            return text;
+        }
+    }
 
 }
+
+

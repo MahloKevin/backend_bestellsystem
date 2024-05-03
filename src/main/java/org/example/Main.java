@@ -10,9 +10,8 @@ public class Main {
         app.get("/test", test::getAllProducts);
         app.get("/test/{special}", test::getSpecialProduct);*/
 
-        String update = "1;name;durstloescher;ID;1";
-        Communication c = new Communication();
-        c.updateObject(update);
+
+
 
     }
 }

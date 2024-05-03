@@ -34,11 +34,11 @@ public class Communication {
 
             String[] parts = parameter.split(";");
 
-            query = "SELECT COUNT(*) AS row FROM " + o.giveDatabase(Integer.valueOf(parts[0])) + " WHERE " + parts[1] + " = " + parts[2] + ";";
+            query = "SELECT COUNT(*) AS row FROM " + o.giveDatabase(Integer.parseInt(parts[0])) + " WHERE " + parts[1] + " = " + parts[2] + ";";
 
         } else if (o.countSymbols(parameter, ";") == 1) {
 
-            parameter = o.giveDatabase(Integer.valueOf(parameter));
+            parameter = o.giveDatabase(Integer.parseInt(parameter));
             query = "SELECT COUNT(*) AS row FROM " + parameter + ";";
 
         } else {
@@ -75,25 +75,24 @@ public class Communication {
     }
 
 
-    public String updateObject(String context) {
+    public void updateObject(Context context) {
         String parameter = String.valueOf(context);
-        String query = "";
+        String query;
 
         if (o.countSymbols(parameter, ";") == 4) {
 
             String[] parts = parameter.split(";");
-            query = "UPDATE " + o.giveDatabase(Integer.valueOf(parts[0])) + " SET " + parts[1] + " = " + parts[2] + " WHERE " + parts[3] + " = " + parts[4] + ";";
-            System.out.println(1);
+            query = "UPDATE " + o.giveDatabase(Integer.parseInt(parts[0])) + " SET " + parts[1] + " = " + o.addQuotation(parts[2]) + " WHERE " + parts[3] + " = " + o.addQuotation(parts[4]) + ";";
 
         } else if (o.countSymbols(parameter, ";") == 2) {
 
             String[] parts = parameter.split(";");
-            query = "UPDATE " + o.giveDatabase(Integer.valueOf(parts[0])) + " SET " + parts[1] + " = " + parts[2] + ";";
-            System.out.println(2);
+            query = "UPDATE " + o.giveDatabase(Integer.parseInt(parts[0])) + " SET " + parts[1] + " = " + o.addQuotation(parts[2]) + ";";
 
         } else {
 
-            return "Wallah Bruder Parameter falsch";
+            context.result("Parameter sind fehlerhaft :(");
+            return;
 
         }
 
@@ -104,7 +103,6 @@ public class Communication {
             //Statement erstellen
             Statement statement = connection.createStatement();
 
-            System.out.println(query);
             //Abrage absenden
             int rowCount = statement.executeUpdate(query);
 
@@ -113,12 +111,52 @@ public class Communication {
             connection.close();
 
 
-            return (String.valueOf(rowCount));
+            context.result(String.valueOf(rowCount));
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return ("Kein Ergebniss gefunden :(");
+            context.result("Kein Ergebniss gefunden :(");
         }
+
+    }
+
+    public void deleteObject(Context context) {
+        String parameter = String.valueOf(context);
+        String query;
+
+        if (o.countSymbols(parameter, ";") == 2) {
+
+            String[] parts = parameter.split(";");
+            query = "DELETE FROM " + o.giveDatabase(Integer.parseInt(parts[0])) + " WHERE " + parts[1] + " = " + o.addQuotation(parts[2]);
+
+
+        } else {
+            context.result("Parameterangabe falsch");
+            return;
+        }
+
+        try {
+            //Verbindung zu SQL Server
+            Connection connection = DriverManager.getConnection(url, user, password);
+
+            //Statement erstellen
+            Statement statement = connection.createStatement();
+
+            //Abrage absenden
+            int rowCount = statement.executeUpdate(query);
+
+            //Verbindung beenden
+            statement.close();
+            connection.close();
+
+
+            context.result(String.valueOf(rowCount));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            context.result("Kein Ergebniss gefunden :(");
+        }
+
     }
 
 
