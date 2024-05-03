@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Erstellungszeit: 30. Apr 2024 um 06:19
+-- Erstellungszeit: 03. Mai 2024 um 10:27
 -- Server-Version: 10.11.6-MariaDB-0+deb12u1
 -- PHP-Version: 8.2.7
 
@@ -90,9 +90,33 @@ CREATE TABLE `orders_products` (
 CREATE TABLE `products` (
   `ID` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `amount` int(11) NOT NULL,
-  `picture` text NOT NULL
+  `amount` int(11) DEFAULT NULL,
+  `picture` text NOT NULL,
+  `price` double NOT NULL,
+  `lunch` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Daten für Tabelle `products`
+--
+
+INSERT INTO `products` (`ID`, `name`, `amount`, `picture`, `price`, `lunch`) VALUES
+(1, 'Milch', 1, '', 10, 0),
+(2, 'Joghurt', 2, '', 2, 1),
+(3, 'Joghurt Erdbeere', 4, '', 2.5, 0),
+(5, 'Kakao-Milch', 7, '', 1.2, 0),
+(7, 'Apfel', 23, '', 0.8, 0),
+(9, 'Mandarinen', 3, '', 0.5, 0),
+(11, 'Kaffee', 150, '', 0.8, 0),
+(13, 'Wurstsalat', 19, '', 4.5, 0),
+(15, 'Essiggurke', 15, '', 0.2, 0),
+(17, 'Wurst', 5, '', 1, 0),
+(19, 'Zimtschnecken', 12, '', 3.2, 0),
+(21, 'Salat-Mozzarella Tomate', 14, '', 7.8, 0),
+(23, 'Donut', 20, '', 1.3, 0),
+(25, 'Ei', 9, '', 1, 0),
+(27, 'Semmel', 24, '', 2.3, 0),
+(29, 'Schokocroissant', 8, '', 3.7, 0);
 
 -- --------------------------------------------------------
 
@@ -118,6 +142,15 @@ CREATE TABLE `users` (
   `mail` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Daten für Tabelle `users`
+--
+
+INSERT INTO `users` (`ID`, `name`, `mail`, `password`) VALUES
+(1, 'Emma Kirchner', 'emma.kirchner@mahlo.com', '12345'),
+(3, 'Tobias Sixt', 'tobias.sixt@mahlo.com', '12345'),
+(5, 'Kevin Seitz', 'kevin.seitz@mahlo.com', '12345');
 
 --
 -- Indizes der exportierten Tabellen
@@ -203,7 +236,7 @@ ALTER TABLE `orders_products`
 -- AUTO_INCREMENT für Tabelle `products`
 --
 ALTER TABLE `products`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT für Tabelle `sessions`
@@ -215,7 +248,7 @@ ALTER TABLE `sessions`
 -- AUTO_INCREMENT für Tabelle `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints der exportierten Tabellen
