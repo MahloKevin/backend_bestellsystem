@@ -10,14 +10,15 @@ import javax.naming.directory.*;
 import java.util.Hashtable;
 import java.util.Optional;
 
-public class DefaultLDAPService{
+
+public class LDAPService{
 
     private static final String LDAP_URL = "ldap://192.168.10.5:3268";
     private static final String BASE_DN = "dc=mahlo,dc=de";
 
     private final DirContext context;
 
-    public DefaultLDAPService() {
+    public LDAPService() {
         this.context = this.loginToUser("apache-auth@mahlo.de", "tester2010");
     }
 
@@ -44,6 +45,7 @@ public class DefaultLDAPService{
             exception.printStackTrace();
         }
 
+        System.out.println("Erfolgreich eingeloggt");
         return Optional.empty();
     }
 

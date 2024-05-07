@@ -10,6 +10,9 @@ public class Main {
         app.get("/test", test::getAllProducts);
         app.get("/test/{special}", test::getSpecialProduct);*/
 
+        LDAPService test = new LDAPService();
+
+        test.login("azu-ks", "25K2005s");
 
 
 
