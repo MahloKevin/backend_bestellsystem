@@ -14,6 +14,6 @@ public class Main {
         app.get("/deleteObject/{parameter}", SQL::deleteObject);
         app.get("/newUser/{parameter}", SQL::newUser);
 
-        app.get("login/{parameter}", LDAPService::login);
+        //app.get("login/{parameter}", LDAPService::login);
     }
 }
