@@ -3,8 +3,14 @@ users
 users;ID;1
 
 SQL.java/updateObject:
+users;ID;1;ID;2
+users;ID;1
 
 SQL.java/deleteObject:
+users;ID;1
+
+SQL.java/deleteObject:
+Kevin;Seitz;IT DEPARTMENT
 
 LDAPService.java/login:
 
