@@ -1,4 +1,4 @@
-package org.example;
+package bestellsystem;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -13,16 +13,26 @@ import java.util.Optional;
 
 public class LDAPService{
 
-    private static final String LDAP_URL = "ldap://192.168.10.5:3268";
-    private static final String BASE_DN = "dc=mahlo,dc=de";
+    //Klasse um meine Infos aus der Config zu ziehen
+    private static SQL s = new SQL();
+    private static Configurations c = new Configurations();
+    private static String ldap = c.LDAPConfig();
+    private static String[] split = ldap.split(";");
+
+    private static final String LDAP_URL = split[0];
+    private static final String BASE_DN = split[1];
 
     private final DirContext context;
 
     public LDAPService() {
-        this.context = this.loginToUser("apache-auth@mahlo.de", "tester2010");
+        this.context = this.loginToUser("apache-auth@mahlo.de", split[2]);
     }
 
-    public @NotNull Optional<Object> login(@NotNull String userName, @NotNull String password) {
+    public @NotNull Optional<Object> login(Context context) {
+        String parameter = String.valueOf(context);
+        String[] parts = parameter.split(";");
+        String userName = parts[0];
+        String password = parts[1];
         if (this.loginToUser(userName + "@mahlo.de", password) == null) { // @mahlo.de must be applied
             return Optional.empty();
         }
@@ -38,6 +48,9 @@ public class LDAPService{
                 Attributes attributes = searchResult.getAttributes();
                 String[] name = attributes.get("cn").get().toString().split(" ");
                 LDAPAccountInfo ldapAccountInfo = new LDAPAccountInfo(userName, name[1], name[0], attributes.get("department").get().toString());
+
+
+                //s.newUser(name[1], name[0], attributes.get("department").get().toString());
                 return Optional.of(ldapAccountInfo);
             }
 
@@ -45,7 +58,6 @@ public class LDAPService{
             exception.printStackTrace();
         }
 
-        System.out.println("Erfolgreich eingeloggt");
         return Optional.empty();
     }
 

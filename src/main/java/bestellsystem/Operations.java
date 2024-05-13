@@ -1,4 +1,4 @@
-package org.example;
+package bestellsystem;
 
 public class Operations {
 
@@ -14,7 +14,7 @@ public class Operations {
         return count;
     }
 
-    public String giveDatabase(int i) {
+    /*public String giveDatabase(int i) {
 
         String result;
 
@@ -51,6 +51,7 @@ public class Operations {
         }
 
     }
+     */
 
     public String addQuotation(String text) {
 
