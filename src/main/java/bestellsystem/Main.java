@@ -13,7 +13,11 @@ public class Main {
         app.get("/updateObject/{parameter}", SQL::updateObject);
         app.get("/deleteObject/{parameter}", SQL::deleteObject);
         app.get("/newUser/{parameter}", SQL::newUser);
+        app.get("/selectToJSON/{parameter}", SQL::selectToJSON);
 
-        //app.get("login/{parameter}", LDAPService::login);
+        //app.get("login/{parameter}", LDAPService::login);*/
+
+        //SQL s = new SQL();
+        //s.selectToJSON("test");
     }
 }
