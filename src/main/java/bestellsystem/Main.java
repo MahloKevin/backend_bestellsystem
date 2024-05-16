@@ -5,19 +5,14 @@ import io.javalin.Javalin;
 public class Main {
     public static void main(String[] args) {
         Javalin app = Javalin.create(config -> {
-            config.jetty.defaultHost = "0.0.0.0"; // Setze die gewünschte IP-Adresse
-            config.jetty.defaultPort = 42069; // Setze den gewünschten Port
+            config.jetty.defaultHost = "10.81.234.138"; // Ersetze mit der tatsächlichen IP-Adresse
+            config.jetty.defaultPort = 42069;
         }).start();
 
-        app.get("/countLines/{parameter}", SQL::countLines);
-        app.get("/updateObject/{parameter}", SQL::updateObject);
-        app.get("/deleteObject/{parameter}", SQL::deleteObject);
-        app.get("/newUser/{parameter}", SQL::newUser);
-        app.get("/selectToJSON/{parameter}", SQL::selectToJSON);
-
-        //app.get("login/{parameter}", LDAPService::login);*/
-
-        //SQL s = new SQL();
-        //s.selectToJSON("test");
+        app.get("/countLines/{parameter}", Service::countLines);
+        app.get("/updateObject/{parameter}", Service::updateObject);
+        app.get("/deleteObject/{parameter}", Service::deleteObject);
+        app.get("/selectToJSON/{parameter}", Service::selectToJSON);
+        app.get("/login/{parameter}", Service::login);
     }
 }

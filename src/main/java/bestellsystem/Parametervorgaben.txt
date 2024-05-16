@@ -10,7 +10,11 @@ SQL.java/deleteObject:
 users;ID;1
 
 SQL.java/deleteObject:
-Kevin;Seitz;IT DEPARTMENT
+Max;Mustermann;IT DEPARTMENT
+
+SQL.java/newUser:
+max.mustermann@mahlo.com;Max;Mustermann;IT
 
 LDAPService.java/login:
+max.mustermann@mahlo.com;Passwort1234
 
