@@ -37,10 +37,10 @@ public class Configurations {
 
                 }
             }
-            return "Kein Ergebniss";
+            return "Kein Ergebnis";
         } catch (Exception e) {
             e.printStackTrace();
-            return "Kein Ergebniss";
+            return "Kein Ergebnis";
         }
     }
 
@@ -73,10 +73,10 @@ public class Configurations {
 
                 }
             }
-            return "Kein Ergebniss";
+            return "Kein Ergebnis";
         } catch (Exception e) {
             e.printStackTrace();
-            return "Kein Ergebniss";
+            return "Kein Ergebnis";
         }
 
     }

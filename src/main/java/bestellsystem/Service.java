@@ -96,8 +96,6 @@ public class Service {
         } else {
             return "getID: Parameterangabe Falsch";
         }
-
-
     }
 
 
@@ -107,7 +105,6 @@ public class Service {
         String query;
 
         if (o.countSymbols(parameter, ";") == 2) {
-
             String[] parts = parameter.split(";");
             query = "SELECT COUNT(*) AS result FROM " + parts[0] + " WHERE " + parts[1] + " = " + parts[2] + ";";
             context.result(sendStatement(query));
@@ -120,8 +117,6 @@ public class Service {
         } else {
             context.result("countLines: Parameterangabe Fehlerhaft");
         }
-
-
     }
 
     public static void updateObject(Context context) {
@@ -130,17 +125,13 @@ public class Service {
         String query;
 
         if (o.countSymbols(parameter, ";") == 4) {
-
             String[] parts = parameter.split(";");
             query = "UPDATE " + parts[0] + " SET " + parts[1] + " = " + o.addQuotation(parts[2]) + " WHERE " + parts[3] + " = " + o.addQuotation(parts[4]) + ";";
             context.result(sendStatement(query));
-
         } else if (o.countSymbols(parameter, ";") == 2) {
-
             String[] parts = parameter.split(";");
             query = "UPDATE " + parts[0] + " SET " + parts[1] + " = " + o.addQuotation(parts[2]) + ";";
             context.result(sendStatement(query));
-
         } else {
             context.result("updateObject: Parameterangabe Fehlerhaft");
         }
@@ -153,7 +144,6 @@ public class Service {
         String query;
 
         if (o.countSymbols(parameter, ";") == 2) {
-
             String[] parts = parameter.split(";");
             query = "DELETE FROM " + parts[0] + " WHERE " + parts[1] + " = " + o.addQuotation(parts[2]);
             context.result(sendStatement(query));
