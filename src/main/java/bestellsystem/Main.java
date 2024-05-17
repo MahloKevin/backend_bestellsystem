@@ -14,5 +14,6 @@ public class Main {
         }).start(7000);
 
         app.get("/", ctx -> ctx.result("Hello, World!"));
+        app.get("countLines/{parameter}", Service::countLines);
     }
 }
